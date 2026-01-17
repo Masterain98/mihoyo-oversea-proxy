@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>米哈游海外加速</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Main View -->
+    <div id="mainView" class="view">
+      <header class="header">
+        <img src="icons/logo.png" alt="Logo" class="header-logo">
+        <h1>米哈游海外加速</h1>
+        <p class="subtitle">将图片资源重定向到海外 CDN</p>
+      </header>
+
+      <section class="settings-section">
+        <h2>📡 反代设置</h2>
+
+        <div class="setting-item">
+          <div class="setting-header">
+            <label for="proxyDomain">米游社用户上传图片</label>
+            <label class="toggle">
+              <input type="checkbox" id="enableUploadBbs" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <input type="text" id="proxyDomain" placeholder="upload-bbs-miyoushe.dal.ao">
+          <p class="hint">将 upload-bbs.miyoushe.com 替换为此域名</p>
+          <div class="config-link-wrapper">
+            <button class="btn-link" id="showUploadBbsConfig">自建反代节点</button>
+          </div>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-header">
+            <label for="actMihoyoDomain">活动页面静态资源</label>
+            <label class="toggle">
+              <input type="checkbox" id="enableActMihoyo" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <input type="text" id="actMihoyoDomain" placeholder="act-mihoyo.dal.ao">
+          <p class="hint">将 act.mihoyo.com 静态资源替换为此域名</p>
+          <div class="config-link-wrapper">
+            <button class="btn-link" id="showActMihoyoConfig">自建反代节点</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="saveBtn">💾 保存设置</button>
+        <button class="btn btn-secondary" id="resetBtn">🔄 恢复默认</button>
+      </div>
+
+      <footer class="footer">
+        <p>提示：修改设置后需要刷新页面才能生效</p>
+      </footer>
+    </div>
+
+    <!-- Config View -->
+    <div id="configView" class="view hidden">
+      <header class="config-header">
+        <button class="btn-back" id="backBtn">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          返回
+        </button>
+        <h2>Nginx 配置</h2>
+      </header>
+      <div class="config-content">
+        <p class="config-desc">你可以使用以下 Nginx 配置文件来启用你的反代服务器。</p>
+        <div class="code-block">
+          <pre><code id="configContent"></code></pre>
+        </div>
+        <button class="btn btn-primary btn-copy-page" id="copyConfigBtn">📄 复制配置</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>

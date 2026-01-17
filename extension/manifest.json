@@ -1,0 +1,53 @@
+{
+    "manifest_version": 3,
+    "name": "米哈游海外加速",
+    "version": "1.0.0",
+    "description": "将米哈游静态资源替换为海外 CDN 加速域名",
+    "permissions": [
+        "declarativeNetRequest",
+        "storage"
+    ],
+    "host_permissions": [
+        "*://www.miyoushe.com/*",
+        "*://upload-bbs.miyoushe.com/*",
+        "*://act.mihoyo.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "米哈游海外加速",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://www.miyoushe.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "icons/logo.png"
+            ],
+            "matches": [
+                "*://www.miyoushe.com/*"
+            ]
+        }
+    ]
+}
